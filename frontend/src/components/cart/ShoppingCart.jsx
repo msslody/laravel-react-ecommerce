@@ -88,7 +88,7 @@ export default function ShoppingCart() {
     						<span>$17.60</span>
     					</p>
     				</div>
-    				<p className="text-center"><a href="checkout.html" className="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+    				<p className="text-center"><a href="/checkout" className="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
     			</div>
     		</div>
 			</div>

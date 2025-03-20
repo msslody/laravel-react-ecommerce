@@ -8166,10 +8166,14 @@ h1, h2, h3, h4, h5,
 
 .billing-heading {
   font-size: 24px;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+color: #fff; }
 
 .billing-form .form-group {
   position: relative; }
+  .billing-form .form-group input{
+    color: wheat !important;
+  }
 
 .billing-form label {
   color: #fff; }
@@ -8231,6 +8235,9 @@ h1, h2, h3, h4, h5,
   .cart-detail .btn-primary {
     display: block;
     width: 100%; }
+.cart-detail label{
+  color: #6B6A6A;
+}
 
 .ftco-menu {
   padding-top: 7em; }
@@ -9219,8 +9226,11 @@ textarea.form-control {
     margin-bottom: 0; }
   .sidebar-box h3 {
     font-size: 18px;
-    margin-bottom: 15px; }
-
+    margin-bottom: 15px; 
+    color: #fff;}
+    .sidebar-box p{
+      color: #6D6D6E;
+    }
 .categories li, .sidelink li {
   position: relative;
   margin-bottom: 10px;
