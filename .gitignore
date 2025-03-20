@@ -1,0 +1,9 @@
+# Laravel
+/backend/vendor
+/backend/.env
+/backend/public/storage
+
+# React
+/frontend/node_modules
+/frontend/build
+/frontend/.env
