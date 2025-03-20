@@ -318,7 +318,8 @@ h3, .h3 {
   font-size: 1.75rem; }
 
 h4, .h4 {
-  font-size: 1.5rem; }
+  font-size: 1.5rem;
+  color:#fff !important }
 
 h5, .h5 {
   font-size: 1.25rem; }
@@ -8993,8 +8994,12 @@ textarea.form-control {
       color: #fff;
       border: 1px solid transparent; }
 
-.contact-section .contact-info p span {
+.contact-section .contact-info span {
   color: #fff; }
+.contact-section .contact-info p{
+  color: #7A7A7A; }
+.contact-section .contact-info a{
+  color: #B58F5C; }
 
 .contact-form .form-group {
   position: relative; }
