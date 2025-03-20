@@ -1,9 +1,12 @@
 import React from 'react'
+import Carousel from '../cart/Carousel'
+import ShoppingCart from '../cart/ShoppingCart'
 
 export default function Cart() {
   return (
     <>
-        <h1>Cart</h1>
+        <Carousel/>
+        <ShoppingCart/>
     </>
   )
 }
