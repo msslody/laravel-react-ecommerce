@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './components/layout/RootLayout.jsx';
 import { Shop } from './components/pages/Shop.jsx';
@@ -13,6 +14,7 @@ import Menu from './components/pages/Menu.jsx';
 import { Home } from './components/pages/Home.jsx';
 import Cart from './components/pages/Cart.jsx';
 import Checkout from './components/pages/Checkout.jsx';
+import Admin from './Admin/pages/Admin.jsx';
 
 
 
@@ -35,9 +37,11 @@ const router = createBrowserRouter([
       { path: '/menu', element: <Menu/> },
       { path: '/cart', element: <Cart/>   },
       { path: '/checkout', element:  <Checkout/> },
-      
+    
     ]
-  }
+    
+  },
+  { path: '/admin', element:  <Admin/> },
 ]);
 
 createRoot(document.getElementById('root')).render(
