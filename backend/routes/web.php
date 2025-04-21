@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 Route::post('/admin',[authcontroller::class,'authenticat']);
 
-
 Route::get('/', function () {
     return view('welcome');
 });

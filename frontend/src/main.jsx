@@ -13,8 +13,7 @@ import Menu from './components/pages/Menu.jsx';
 import { Home } from './components/pages/Home.jsx';
 import Cart from './components/pages/Cart.jsx';
 import Checkout from './components/pages/Checkout.jsx';
-
-
+import Login from'./components/auth/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +33,7 @@ const router = createBrowserRouter([
       { path: '/contact', element: <Contact/> },
       { path: '/menu', element: <Menu/> },
       { path: '/cart', element: <Cart/>   },
+      {path: '/login', element: <Login/>},
       { path: '/checkout', element:  <Checkout/> },
       
     ]

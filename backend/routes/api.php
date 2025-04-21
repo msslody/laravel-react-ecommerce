@@ -12,16 +12,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login',[authcontroller::class,'login']);
 Route::post('register',[authcontroller::class,'register']);
-
 Route::post("saveorder",[Ordercontroller::class , "order"]);
-
 Route::get('FeaturedProducts',[ProductControllrt::class,'FeaturedProducts']);
 Route::get('products',[ProductControllrt::class,'index']);
 Route::get('productimages/{productid}', [ProductController::class,'productimage']);
 Route::get('sellerproduct',[ProductControllrt::class,'sellerproduct']);
 Route::get("getproduct/{id}",[ProductControllrt::class,"getproduct"]);
-
-
 
 Route::group(['middleware' => "auth:sanctum"], function() {
     Route::post('product', [ProductController::class,'store']);
