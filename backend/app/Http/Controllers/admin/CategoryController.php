@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\HTTP\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\HTTP\Request;
 
 class CategoryController extends Controller
 {
@@ -15,7 +15,7 @@ class CategoryController extends Controller
         if(!$category){
             return response()->json([
                 "status" => 404,
-                "message" => "category no data"
+                "message" => "category no data!"
             ]);
         }
 
@@ -25,27 +25,16 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function stor(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                "status" => 400,
-                "error" => $validator->errors(),
-            ], 400);
-        }
-
+    public function store(CategoryRequest $request) {
         $category = new Category();
         $category->name = $request->name;
-        $category->status = $request->status;
+        $category->status = 1;
         $category->save();
         return response()->json([
             "status"=> 200,
-            "msg"=> "category add successful",
+            "msg"=> "category add successfully",
             "data"=>$category,
-        ]);       
+        ]);
     }
 
     public function update ($id,Request $request)
@@ -55,7 +44,7 @@ class CategoryController extends Controller
         if(!$category){
             return response()->json([
                 "status" => 404,
-                "message" => "category not found"
+                "message" => "category not found!"
             ]);
         }
 
@@ -65,7 +54,7 @@ class CategoryController extends Controller
 
         return response()->json([
             "status" => 400,
-            "message" =>"category update succesful",
+            "message" =>"category update succesfully",
             "category" => $category
 
         ]);
@@ -77,7 +66,7 @@ class CategoryController extends Controller
         if(!$category){
             return response()->json([
                 "status" => 404,
-                "message" => "category not found"
+                "message" => "category not found!"
             ]);
         }
 
@@ -85,7 +74,7 @@ class CategoryController extends Controller
 
         return response()->json([
             "status"=> 200,
-            "message"=> "category delete successful",
+            "message"=> "category delete successfully",
         ]);
     }
 }

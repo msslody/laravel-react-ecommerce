@@ -3241,7 +3241,7 @@ input[type="button"].btn-block {
   display: block; }
 
 .navbar {
-  position: relative;
+  position: sticky !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3267,6 +3267,8 @@ input[type="button"].btn-block {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between; }
+   
+    
 
 .navbar-brand {
   display: inline-block;
@@ -9359,3 +9361,7 @@ textarea.form-control {
 .slider-item .breadcrumbs span  a{
   color: white;
 }
+
+/* nav{
+  margin: 50 !important;
+} */

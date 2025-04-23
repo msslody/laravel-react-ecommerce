@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\HTTP\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\HTTP\Controllers\Controller;
+use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
-use Illuminate\Http\Request;
+use Illuminate\HTTP\Request;
 use Illuminate\Support\Facades\Validator;
 
 class Brandcontroller extends Controller
@@ -15,7 +16,7 @@ class Brandcontroller extends Controller
         if(!$brand){
             return response()->json([
                 "status" => 404,
-                "message" => "brand no data"
+                "message" => "no data"
             ]);
         }
 
@@ -23,29 +24,19 @@ class Brandcontroller extends Controller
                "status" => 200,
                "brand" => $brand
         ]);
-           
-        
+
+
     }
 
-    public function stor (Request $request){
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                "status" => 400,
-                "error" => $validator->errors(),
-            ], 400);
-        }
+    public function store (BrandRequest $request){
 
         $brand = new Brand();
         $brand->name = $request->name;
-        $brand->status = $request->status;
+        $brand->status = 1;
         $brand->save();
         return response()->json([
             "status"=> 200,
-            "message"=> "brand add successful",
+            "message"=> "brand add successfully",
             "data"=>$brand,
         ]);
 
@@ -58,7 +49,7 @@ class Brandcontroller extends Controller
         if(!$brand){
             return response()->json([
                 "status" => 404,
-                "message" => "brand not found"
+                "message" => "brand not found!"
             ]);
         }
 
@@ -79,15 +70,15 @@ class Brandcontroller extends Controller
         if(!$brand){
             return response()->json([
                 "status" => 404,
-                "message" => "brand not found"
+                "message" => "brand not found!"
             ]);
         }
 
         $brand->delete();
-        
+
         return response()->json([
             "status"=> 200,
-            "message"=> "brand delete successful",
+            "message"=> "brand delete successfully",
         ]);
 
     }

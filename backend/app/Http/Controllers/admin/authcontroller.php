@@ -1,37 +1,21 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\HTTP\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\HTTP\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use Illuminate\HTTP\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            "name"=> "required",
-            "email"=> "required",
-            "password"=> "required",
-          
-        ]);
-
-        if($validator->fails()){
-            return response()->json([
-                "status"=> 400,
-                "error"=> $validator->errors(),
-            ],400);
-        }
-
-        $user = new User();
-        $user->name =$request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->save();
+        $user = User::create($request->all());
 
         return response()->json([
             'status' =>200,
@@ -39,19 +23,8 @@ class AuthController extends Controller
             'user' => $user
         ]);
     }
-    public function login(Request $request) 
+    public function login(LoginRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                "status" => 400,
-                "error" => $validator->errors(),
-            ], 400);
-        }
         $user = User::where('email', $request->email)->first();
 
 

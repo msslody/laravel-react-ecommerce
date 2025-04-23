@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\HTTP\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+use App\HTTP\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
+use Illuminate\HTTP\Request;
 
 class ProductController extends Controller
 {
@@ -20,27 +21,15 @@ class ProductController extends Controller
         ]);
     }
 
-    public function store (Request $request)
+    public function store (ProductRequest $request)
     {
-        $vailadator = Validator::make($request->all(), [
-            'title' => 'required',
-            'category_id' => 'required',
-            'brand_id' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
-            'image' => 'required',
-            'description' => 'required',
-            'status' => 'required',
-        ]);
-        if ($vailadator->fails()) {
-            return response()->json([
-                "status" => 400,
-                "errors" => $vailadator->errors()
-            ]);
-        }
-        $image = $request->file('image');
-        $imageName = time().'.'.$request->image->extension();  
-        $image->move(public_path('/uploads'), $imageName);
+
+//        $image = $request->file('image');
+        $imageName = time().'.'.$request->image->extension();
+        $path = $request->file('image')->storeAs('images', $imageName, 'public');
+        $accessLink = asset('storage/'.$path);
+//        dd($accessLink);
+//        $image->move(public_path('/uploads'), $imageName);
 
         $product = new product();
         $product->category_id = $request->category_id;
@@ -48,7 +37,7 @@ class ProductController extends Controller
         $product->title = $request->title;
         $product->price = $request->price;
         $product->quantity = $request->quantity;
-        $product->image = $imageName;
+        $product->image = $accessLink;
         $product->description = $request->description;
         $product->status = $request->status;
         $product->save();
@@ -79,26 +68,26 @@ class ProductController extends Controller
     public function update($id, Request $request)
     {
         $product = Product::find($id);
-    
+
         if (!$product) {
             return response()->json([
                 "status" => 404,
                 "message" => "Product not found"
             ]);
         }
-    
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('/uploads'), $imageName);
-    
+
             if ($product->image && file_exists(public_path('/uploads' . $product->image))) {
                 unlink(public_path('/uploads' . $product->image));
             }
-    
+
             $product->image = $imageName;
         }
-    
+
         $product->category_id = $request->category_id;
         $product->brand_id = $request->brand_id;
         $product->title = $request->title;
@@ -107,7 +96,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->status = $request->status;
         $product->save();
-    
+
         return response()->json([
             "status" => 200,
             "product" => $product

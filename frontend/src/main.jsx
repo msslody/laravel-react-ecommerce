@@ -15,6 +15,7 @@ import { Home } from './components/pages/Home.jsx';
 import Cart from './components/pages/Cart.jsx';
 import Checkout from './components/pages/Checkout.jsx';
 import Admin from './Admin/pages/Admin.jsx';
+import User from './components/pages/User.jsx';
 
 
 
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
       { path: '/menu', element: <Menu/> },
       { path: '/cart', element: <Cart/>   },
       { path: '/checkout', element:  <Checkout/> },
+      { path: '/users', element: <User/> },
     
     ]
     
